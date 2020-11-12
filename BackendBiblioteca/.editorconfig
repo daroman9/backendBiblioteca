@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0022: Usar cuerpo de bloques para los métodos
+csharp_style_expression_bodied_methods = true:silent
