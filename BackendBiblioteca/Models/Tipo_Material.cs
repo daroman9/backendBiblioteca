@@ -8,6 +8,6 @@ namespace WebApiCaracterizacion.Models
     public class Tipo_Material
     {
         public int id { get; set; }
-        public string tipoMaterial { get; set; }
+        public string nombre { get; set; }
     }
 }

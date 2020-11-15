@@ -15,7 +15,7 @@ namespace WebApiCaracterizacion.Models
         public string nombreAcudiente { get; set; }
         public string apellidoAcudiente { get; set; }
         public string telefonoAcudiente { get; set; }
-        public int autorizacion { get; set; }
-        public int activo { get; set; }
+        public string autorizacion { get; set; }
+        public string activo { get; set; }
     }
 }

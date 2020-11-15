@@ -8,6 +8,6 @@ namespace WebApiCaracterizacion.Models
     public class Dispositivos
     {
         public int id { get; set; }
-        public string nombreDispositivo { get; set; }
+        public string nombre { get; set; }
     }
 }

@@ -25,11 +25,6 @@ namespace WebApiCaracterizacion.Models
         public int id_Dispositivos { get; set; }
         [JsonIgnore]
         public Dispositivos Dispositivos { get; set; }
-        //Clave foranea para relacionar con la tabla ApplicationUser
-        [ForeignKey("ApplicationUser")]
-        public string id_Usuario { get; set; }
-        [JsonIgnore]
-        public ApplicationUser ApplicationUser { get; set; }
         //Clave foranea para relacionar con la tabla Editorial
         [ForeignKey("Editorial")]
         public int id_Editorial { get; set; }

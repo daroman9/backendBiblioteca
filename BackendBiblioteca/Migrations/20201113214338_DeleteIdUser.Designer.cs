@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiCaracterizacion.Models;
 
 namespace BackendBiblioteca.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201113214338_DeleteIdUser")]
+    partial class DeleteIdUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,7 +238,7 @@ namespace BackendBiblioteca.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("nombre");
+                    b.Property<string>("nombreDispositivo");
 
                     b.HasKey("id");
 
@@ -249,7 +251,7 @@ namespace BackendBiblioteca.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("nombre");
+                    b.Property<string>("nombreEditorial");
 
                     b.HasKey("id");
 
@@ -261,6 +263,8 @@ namespace BackendBiblioteca.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<int>("cantidad");
 
@@ -281,6 +285,8 @@ namespace BackendBiblioteca.Migrations
                     b.Property<string>("observacion");
 
                     b.HasKey("id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("id_Area");
 
@@ -322,7 +328,7 @@ namespace BackendBiblioteca.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("nombre");
+                    b.Property<string>("tipoMaterial");
 
                     b.HasKey("id");
 
@@ -376,6 +382,10 @@ namespace BackendBiblioteca.Migrations
 
             modelBuilder.Entity("WebApiCaracterizacion.Models.Material_Prestamo", b =>
                 {
+                    b.HasOne("WebApiCaracterizacion.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
                     b.HasOne("WebApiCaracterizacion.Models.Area", "Area")
                         .WithMany()
                         .HasForeignKey("id_Area")

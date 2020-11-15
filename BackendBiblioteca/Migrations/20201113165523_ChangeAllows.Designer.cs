@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiCaracterizacion.Models;
 
 namespace BackendBiblioteca.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201113165523_ChangeAllows")]
+    partial class ChangeAllows
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,7 +238,7 @@ namespace BackendBiblioteca.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("nombre");
+                    b.Property<string>("nombreDispositivo");
 
                     b.HasKey("id");
 
@@ -249,7 +251,7 @@ namespace BackendBiblioteca.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("nombre");
+                    b.Property<string>("nombreEditorial");
 
                     b.HasKey("id");
 
@@ -274,6 +276,8 @@ namespace BackendBiblioteca.Migrations
 
                     b.Property<int>("id_TipoMaterial");
 
+                    b.Property<string>("id_Usuario");
+
                     b.Property<string>("iesbn");
 
                     b.Property<string>("nombreMaterial");
@@ -289,6 +293,8 @@ namespace BackendBiblioteca.Migrations
                     b.HasIndex("id_Editorial");
 
                     b.HasIndex("id_TipoMaterial");
+
+                    b.HasIndex("id_Usuario");
 
                     b.ToTable("Material_Prestamos");
                 });
@@ -322,7 +328,7 @@ namespace BackendBiblioteca.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("nombre");
+                    b.Property<string>("tipoMaterial");
 
                     b.HasKey("id");
 
@@ -395,6 +401,10 @@ namespace BackendBiblioteca.Migrations
                         .WithMany()
                         .HasForeignKey("id_TipoMaterial")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebApiCaracterizacion.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("id_Usuario");
                 });
 
             modelBuilder.Entity("WebApiCaracterizacion.Models.Prestamo", b =>
