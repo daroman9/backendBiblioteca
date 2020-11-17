@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WebApiCaracterizacion.Models;
-
+using BackendBiblioteca.DataConsultas;
 
 namespace WebApiCaracterizacion
 {
@@ -28,9 +28,10 @@ namespace WebApiCaracterizacion
 
         public void ConfigureServices(IServiceCollection services)
         {
-      
+            //Servicios para ejecutar procedimiento almacenados 
+            services.AddScoped<DatosPrestamoRepository>();
             //Servicio para el logueo con captcha
-           
+
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>(

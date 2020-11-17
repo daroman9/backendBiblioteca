@@ -28,6 +28,31 @@ namespace BackendBiblioteca.Controllers
         }
 
         // GET: api/Detalle_Usuarios/5
+        [HttpGet("getNombres/{id}")]
+        public async Task<IActionResult> GetDetalle_UsuarioNombres([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var detalle_Usuario = await _context.Detalle_Usuario.FindAsync(id);
+            var nombreCompleto = detalle_Usuario.nombre + " " + detalle_Usuario.apellido;
+
+            if (detalle_Usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(nombreCompleto);
+        }
+
+
+
+
+
+
+        // GET: api/Detalle_Usuarios/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDetalle_Usuario([FromRoute] int id)
         {
@@ -45,11 +70,6 @@ namespace BackendBiblioteca.Controllers
 
             return Ok(detalle_Usuario);
         }
-
-     
-
-
-
         // PUT: api/Detalle_Usuarios/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDetalle_Usuario([FromRoute] int id, [FromBody] Detalle_Usuario detalle_Usuario)
