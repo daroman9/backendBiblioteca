@@ -47,10 +47,23 @@ namespace BackendBiblioteca.Controllers
             return Ok(nombreCompleto);
         }
 
+        //Obtener un usuario por su id
+        [HttpGet("getNombresByGrado/{grado}")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult GetUsuariosByGrado([FromRoute] string grado)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var usuario = _context.Detalle_Usuario.Where(x => x.grado == grado).ToList();
+            if (usuario == null)
+            {
+                return NotFound();
+            }
 
-
-
-
+            return Ok(usuario);
+        }
 
         // GET: api/Detalle_Usuarios/5
         [HttpGet("{id}")]
