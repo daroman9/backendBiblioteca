@@ -11,6 +11,7 @@ namespace WebApiCaracterizacion.Models
         public int id { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
+        public string documento { get; set; }
         public string grado { get; set; }
         public string nombreAcudiente { get; set; }
         public string apellidoAcudiente { get; set; }

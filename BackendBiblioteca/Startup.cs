@@ -30,7 +30,10 @@ namespace WebApiCaracterizacion
         {
             //Servicios para ejecutar procedimiento almacenados 
             services.AddScoped<DatosPrestamoRepository>();
-            //Servicio para el logueo con captcha
+            services.AddScoped<ListarPrestamoUsuarioRepository>();
+            services.AddScoped<ListarPrestamoGradosRepository>();
+            services.AddScoped<ListarPrestamosMaterialRepository>();
+          
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
